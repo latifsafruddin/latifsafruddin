@@ -331,7 +331,7 @@
                 </div>
             </div>
             
-            <!-- Call to Action Banner -->
+            <!-- Call to Action Banner: Privat Website & AI -->
             <div class="mt-12 bg-primary dark:bg-blue-900 rounded-2xl p-8 sm:p-10 flex flex-col md:flex-row justify-between items-center text-white shadow-lg relative overflow-hidden group">
                 <div class="absolute -right-10 -top-10 w-48 h-48 bg-white/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
                 <div class="relative z-10 mb-6 md:mb-0 md:mr-8 text-center md:text-left">
@@ -340,6 +340,21 @@
                 </div>
                 <a href="https://latifsafruddin.github.io/privatwebsite-AI/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-6 py-3 bg-white text-primary font-medium rounded-full hover:bg-gray-50 transition-colors shadow-sm relative z-10 whitespace-nowrap">
                     <span data-id="Klik Saja di Sini" data-en="Click Here">Klik Saja di Sini</span> <i class="ph-bold ph-arrow-up-right ml-2 group-hover:rotate-45 transition-transform"></i>
+                </a>
+            </div>
+
+            <!-- Call to Action Banner: Modul, PPT, Sertifikat & Nilai -->
+            <div class="mt-6 bg-gradient-to-r from-blue-700 to-indigo-800 dark:from-blue-950 dark:to-indigo-950 rounded-2xl p-8 sm:p-10 flex flex-col md:flex-row justify-between items-center text-white shadow-lg relative overflow-hidden group border border-blue-400/20">
+                <div class="absolute -left-10 -bottom-10 w-48 h-48 bg-accent/20 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
+                <div class="relative z-10 mb-6 md:mb-0 md:mr-8 text-center md:text-left">
+                    <h3 class="text-2xl font-serif font-bold mb-2 flex items-center justify-center md:justify-start gap-2">
+                        <i class="ph-duotone ph-certificate text-accent text-3xl"></i>
+                        <span data-id="Modul, PPT, Sertifikat & Nilai Peserta" data-en="Modules, PPT, Certificates & Scores">Modul, PPT, Sertifikat & Nilai Peserta</span>
+                    </h3>
+                    <p class="text-blue-100 dark:text-blue-200" data-id="Akses materi pembelajaran, slide presentasi, sertifikat digital, serta rekap nilai lengkap di sini." data-en="Access learning materials, presentation slides, digital certificates, and complete score records here.">Akses materi pembelajaran, slide presentasi, sertifikat digital, serta rekap nilai lengkap di sini.</p>
+                </div>
+                <a href="https://latifsafruddin.github.io/bahan-sertifikat/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-6 py-3 bg-accent text-gray-900 font-bold rounded-full hover:bg-yellow-400 transition-colors shadow-md relative z-10 whitespace-nowrap">
+                    <span data-id="Akses Bahan & Sertifikat" data-en="Access Materials & Certificates">Akses Bahan & Sertifikat</span> <i class="ph-bold ph-arrow-up-right ml-2 group-hover:rotate-45 transition-transform"></i>
                 </a>
             </div>
         </div>
@@ -711,7 +726,6 @@
         const langBtns = document.querySelectorAll('.lang-btn');
         
         function setLanguage(lang) {
-            // Traverse all elements with data-id attribute
             document.querySelectorAll('[data-id]').forEach(el => {
                 const text = el.getAttribute('data-' + lang);
                 if (text) {
@@ -720,42 +734,34 @@
                            el.placeholder = text;
                         }
                     } else {
-                        // Change text safely without removing nested icons (handled by wrapping text in spans)
                         el.innerHTML = text;
                     }
                 }
             });
 
-            // Update html lang attribute for SEO/Accessibility
             document.documentElement.lang = lang;
             localStorage.setItem('language', lang);
 
-            // Update button UI states (active vs inactive)
             langBtns.forEach(btn => {
                 if(btn.getAttribute('data-target-lang') === lang) {
-                    // Active state
                     btn.classList.add('text-primary', 'dark:text-blue-400');
                     btn.classList.remove('text-gray-400', 'text-gray-500', 'hover:text-primary');
                 } else {
-                    // Inactive state
                     btn.classList.remove('text-primary', 'dark:text-blue-400');
                     btn.classList.add('text-gray-400', 'hover:text-primary');
                 }
             });
         }
 
-        // Initialize language from storage or default to ID
         const savedLang = localStorage.getItem('language') || 'id';
         setLanguage(savedLang);
 
-        // Attach click listeners to all language toggle buttons
         langBtns.forEach(btn => {
             btn.addEventListener('click', (e) => {
                 const targetLang = e.target.getAttribute('data-target-lang');
                 setLanguage(targetLang);
             });
         });
-
 
         // --- Dark Mode Toggle Logic ---
         const themeToggleBtn = document.getElementById('theme-toggle');
@@ -795,10 +801,7 @@
         themeToggleBtn.addEventListener('click', toggleTheme);
         themeToggleBtnMobile.addEventListener('click', toggleTheme);
 
-
         // --- UI Interactions ---
-
-        // Custom Message Box
         function showMessage() {
             const currentLang = document.documentElement.lang;
             const titleText = currentLang === 'en' ? 'Message Sent!' : 'Pesan Terkirim!';
@@ -832,7 +835,6 @@
             }, 10);
         }
 
-        // Mobile Menu Toggle
         const btn = document.getElementById('mobile-menu-btn');
         const menu = document.getElementById('mobile-menu');
         const mobileLinks = document.querySelectorAll('.mobile-link');
@@ -847,33 +849,14 @@
             });
         });
 
-        // Navbar scroll effect
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 20) {
                 navbar.classList.add('shadow-md');
-                navbar.classList.replace('py-4', 'py-0'); 
             } else {
                 navbar.classList.remove('shadow-md');
             }
         });
-
-        // Scroll animation trigger
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animationPlayState = 'running';
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
     </script>
 </body>
 </html>
